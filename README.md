@@ -1,10 +1,10 @@
 # tinygame
 create a tiny game.
 
-## Main objects
+## Main classes
 
-1.Hero: name, life, damage, shield
-2.Army: name, list of heros
+1. Hero < Unit: name, life, damage, shield
+2. Army < Unit: name, list of heros
 
 ## example
 
