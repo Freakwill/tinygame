@@ -1,6 +1,9 @@
 # tinygame
 create a tiny game.
 
+## authors
+Haojie Ma and me
+
 ## Main classes
 
 1. Hero < Unit: name, life, damage, shield
