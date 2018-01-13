@@ -1,6 +1,10 @@
 # tinygame
 create a tiny game.
 
+## Main objects
+
+Hero: name, life, damage, shield
+Army: name, list of heros
 
 ## example
 
