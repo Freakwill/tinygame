@@ -163,16 +163,12 @@ class Game(object):
         self._scheduler = None
 
     def init(self):
-        # override the method to create a new game
-        army1 = Army.fromStr('袁军', '袁绍 500 10 100 1;颜良 200 30 30 1;文丑 200 30 30 2')
-        army2 = Army.fromStr('曹军', '曹操 800 30 200 2;荀彧 100 20 600 3;许褚 100 20 10 1')
-
         scheduler = BlockingScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
 
-        for h in army1:
-            scheduler.add_job(h.hit, 'interval', args=(army2,), seconds=h.speed, id=str(h))
-        for h in army2:
-            scheduler.add_job(h.hit, 'interval', args=(army1,), seconds=h.speed, id=str(h))
+        for h in self.army1:
+            scheduler.add_job(h.hit, 'interval', args=(self.army2,), seconds=h.speed, id=str(h))
+        for h in self.army2:
+            scheduler.add_job(h.hit, 'interval', args=(self.army1,), seconds=h.speed, id=str(h))
 
         # def check(army1, army2):
         #     if army1.isdead() or army2.isdead():
@@ -209,7 +205,10 @@ class Game(object):
 
 if __name__ =="__main__":
 
-    threeKingdoms = Game('官渡之战：东汉末年三大战役之一')
+    army1 = Army.fromStr('袁军', '袁绍 500 10 100 1;颜良 200 30 30 1;文丑 200 30 30 2')
+    army2 = Army.fromStr('曹军', '曹操 800 30 200 2;荀彧 100 20 600 3;许褚 100 20 10 1')
+
+    threeKingdoms = Game('官渡之战：东汉末年三大战役之一', army1=army1, army2=army2)
     threeKingdoms.init()
     threeKingdoms.start()
     
